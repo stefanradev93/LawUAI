@@ -1,0 +1,221 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css">
+    <link rel="stylesheet" href="{% static 'mainpage/css/animate.css'%}">
+    <link rel="stylesheet" href="{% static 'mainpage/css/main.css'%}">
+
+    <title>Rechtsgebiet</title>
+</head>
+
+<body>
+   
+    <span class="position-absolute trigger"><!-- hidden trigger to apply 'stuck' styles --></span>
+    <nav class="navbar navbar-expand-sm sticky-top navbar-dark">
+        <div class="container">
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar1">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+            
+    </nav>
+    <!--Section-1-->
+    <section class="section-1">
+        <div class="jumbotron d-flex align-items-center">
+            <div class="gradient"></div>
+            <div class="container-fluid content">
+<!--                 <p style="display: none;font-weight: bold;color:white;font-size:18px" id="class"></p>-->
+<!--                <p style="display: none;font-weight: bold;color:white;font-size:18px" id="title"></p>-->
+
+
+                    <form>
+                  <div class="form-group row">
+                    <label for="colFormLabelLg" data-aos="fade-up"class="col-sm-2 col-form-label col-form-label-lg"  data-aos-delay="300" style="color:white;font-size: 24px;font-weight: bolder">Vorname:</label>
+                    <div class="col-sm-3">
+                      <input type="text"  data-aos="fade-up" data-aos-delay="300" class="form-control form-control-lg" id="colFormLabelLg">
+                    </div>
+                      <label for="colFormLabelLg" data-aos="fade-up" class="col-sm-2 col-form-label col-form-label-lg"   data-aos-delay="300" style="color:white;font-size: 24px;font-weight: bolder">Nachname:</label>
+                    <div class="col-sm-3">
+                      <input type="text" data-aos="fade-up" class="form-control form-control-lg" id="colFormLabelLg2">
+                    </div>
+                  </div>
+                        <div class="form-group row">
+                    <label for="input_box" data-aos="fade-up" class="col-sm-2 col-form-label col-form-label-lg" data-aos-delay="300" style="color:white;font-size: 24px;font-weight: bolder"> Frage:</label>
+                <div class="col-sm-8">
+                 <textarea  class="form-control" id="input_box" data-aos="fade-up" data-aos-delay="500" rows="8"></textarea>
+                </div>
+                        </div>
+                </form>
+
+                <p data-aos="fade-up" data-aos-delay="700"><a id ="classify"class="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter" style="font-size: 24px">Absenden</a>
+            </div>
+            <!--container-fluid end-->
+        </div>
+    </section>
+    <!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Rechtsgebiet:</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       <h5>Titel:</h5><p id="title_gen"></p>
+       <h5>Frage:</h5>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Schliessen</button>
+      </div>
+    </div>
+  </div>
+</div>
+    <!--Section-2-->
+<!--    <section class="section-2">-->
+<!--        <div class="container">-->
+<!--            <div class="row">-->
+<!--                <div class="col-lg-4 col-sm-12 col-12 box-1">-->
+<!--                    <div class="row box" data-aos="fade-left" data-aos-delay="300">-->
+<!--                        <div class="col-lg-2 col-sm-12">-->
+<!--                            <i class="fa fa-desktop" aria-hidden="true"></i>-->
+<!--                        </div>-->
+<!--                        <div class="col-lg-10 col-sm-12">-->
+<!--                            <h3><a href="services.html">Our Model </a></h3>-->
+<!--                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's printer took a galley of type and</p>-->
+<!--                            <p><a href="#model"><img src="{% static 'mainpage/images/plus.png'%}" alt="plus"></a></p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-lg-4 col-sm-12 col-12 box-2">-->
+<!--                    <div class="row box" data-aos="fade-left" data-aos-delay="500">-->
+<!--                        <div class="col-lg-2 col-sm-12">-->
+<!--                            <i class="fa fa-code" aria-hidden="true"></i>-->
+<!--                        </div>-->
+<!--                        <div class="col-lg-10 col-sm-12">-->
+<!--                            <h3><a href="services.html">Data</a></h3>-->
+<!--                            <p> Our dataset consist of textual data gathered from questions and answers in legal domain. Data is crawled from German legal forums... </p>-->
+<!--                            <p><a href="#data"><img src="{% static 'mainpage/images/plus.png'%}" alt="plus"></a></p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-lg-4 col-sm-12 col-12 box-3">-->
+<!--                    <div class="row box" data-aos="fade-left" data-aos-delay="700">-->
+<!--                        <div class="col-lg-2 col-sm-12">-->
+<!--                            <i class="fa fa-comments-o" aria-hidden="true"></i>-->
+<!--                        </div>-->
+<!--                        <div class="col-lg-10 col-sm-12">-->
+<!--                            <h3><a href="services.html">Statistics</a></h3>-->
+<!--                            <p>Classifier:</p>-->
+<!--                            <p> Training Accuracy:</p>-->
+<!--                            <p> Valication Accuracy:</p>-->
+<!--                            <p> Test Accuracy:</p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </section>-->
+<!--    <section class="section-3">-->
+<!--        <div class="container">-->
+<!--            <div class="row m-0">-->
+<!--                <div class="col-lg-5 col-md-12 p-0" data-aos="fade-right" data-aos-delay="300">-->
+<!--                    <h2 id="model">Our Model? </span></h2>-->
+<!--                    <ul>-->
+<!--                        <li><a href="services.html"><i class="fa fa-angle-right" aria-hidden="true"></i>Category classifier</a> </li>-->
+<!--                        <li><a href="services.html"><i class="fa fa-angle-right" aria-hidden="true"></i>Title generator</a></li>-->
+<!--                        <li><a href="services.html"><i class="fa fa-angle-right" aria-hidden="true"></i>LSTM based model</a></li>-->
+<!--                        <li><a href="services.html"><i class="fa fa-angle-right" aria-hidden="true"></i>German word embeddings</a></li>-->
+<!--                    </ul>-->
+<!--                </div>-->
+<!--                <div class="col-lg-7 col-md-12 p-0" data-aos="fade-left" data-aos-delay="300">-->
+<!--                    <figure>-->
+<!--                        <img class="inner-img" src="{% static 'mainpage/images/nn.png'%}" alt="services">-->
+<!--                        <img class="out-sideimg" src="{% static 'mainpage/images/deeplearning.jpg'%}" alt="services">-->
+<!--                    </figure>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </section>-->
+<!--    <section class="services">-->
+<!--        <div class="container">-->
+<!--            <div class="row">-->
+<!--                <div class="col-sm-12 col-12 box-2"  data-aos="fade-up" data-aos-delay="300">-->
+<!--                    <div class="row box">-->
+<!--                        <div class="col-sm-1 col-12">-->
+<!--                            <i class="fa fa-code" aria-hidden="true"></i>-->
+<!--                        </div>-->
+<!--                        <div class="col-sm-11 col-12">-->
+<!--                            <h3 id="data">Data</h3>-->
+<!--                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five</p>-->
+<!--                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five</p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--               -->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </section>-->
+
+    <section class="section-7">
+        <!-- Footer -->
+        <footer class="page-footer font-small stylish-color-dark">            
+
+            <!-- Copyright -->
+            <div class="footer-copyright text-center">
+                <div class="gradient"></div>
+                <p>© 2019, Satya Almasian, Stefan Redav and Erik Koynov </p>
+            </div>
+            <!-- Copyright -->
+
+        </footer>
+        <!-- Footer -->
+    </section>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.js"></script>
+    <script src="{% static 'mainpage/js/animate.js'%}"></script>
+    <script src="{% static 'mainpage/js/custom.js'%}"></script>
+    <script src="{% static 'mainpage/js/jquery-3.3.1.min.js'%}"></script>
+
+    <script>
+        $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+            event.preventDefault();
+            $(this).ekkoLightbox();
+        });
+    $('#classify').click(function(){
+      $.ajax({
+               type: "GET",
+               url: "/classify/",
+               data: {'text':$('#input_box').val()},
+               dataType: "json",
+               success: function(response) {
+                   alert(response)
+                      $('#title_gen').text(response.title_generator);
+                       $('#class').show();
+                       $('#title').hide();
+                },
+                error: function(rs, e) {
+                       alert(rs.responseText);
+                }
+          });
+    });
+
+    </script>
+</body>
+
+</html>

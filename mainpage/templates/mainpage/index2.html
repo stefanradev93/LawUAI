@@ -1,0 +1,229 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Hackaton</title>
+
+    <!-- Font Awesome Icons -->
+    <link href="{% static 'mainpage/vendor/fontawesome-free/css/all.min.css'%}" rel="stylesheet" type="text/css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
+
+    <!-- Plugin CSS -->
+    <link href="{% static 'mainpage/vendor/magnific-popup/magnific-popup.css'%}" rel="stylesheet">
+
+    <!-- Theme CSS - Includes Bootstrap -->
+    <link href="{% static 'mainpage/css/creative.css'%}" rel="stylesheet">
+    <link rel="stylesheet" href="../../static/mainpage/css/creative.css">
+
+</head>
+
+<body id="page-top">
+
+
+<!-- Masthead -->
+<header class="masthead">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center justify-content-center text-center">
+            <div class="container-fluid content">
+
+                <form>
+                    <div class="form-group row">
+                        <label for="colFormLabelLg" data-aos="fade-up"class="col-sm-2 col-form-label col-form-label-lg text-white-75 font-weight-light mb-5"  data-aos-delay="300" style="color:white;font-size: 24px;font-weight: bolder">Vorname:</label>
+                        <div class="col-sm-3">
+                            <input type="text"  data-aos="fade-up" data-aos-delay="300" class="form-control form-control-lg " id="colFormLabelLg">
+                        </div>
+                        <label for="colFormLabelLg" data-aos="fade-up" class="col-sm-2 col-form-label col-form-label-lg text-white-75 font-weight-light mb-5"   data-aos-delay="300" style="color:white;font-size: 24px;font-weight: bolder">Nachname:</label>
+                        <div class="col-sm-3">
+                            <input type="text" data-aos="fade-up" class="form-control form-control-lg" id="colFormLabelLg2">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="input_box" data-aos="fade-up" class="col-sm-2 col-form-label col-form-label-lg text-white-75 font-weight-light mb-5" data-aos-delay="300" style="color:white;font-size: 24px;font-weight: bolder"> Frage:</label>
+                        <div class="col-sm-8">
+                            <textarea  class="form-control" id="input_box" data-aos="fade-up" data-aos-delay="500" rows="8"></textarea>
+                        </div>
+                    </div>
+                </form>
+
+                <p data-aos="fade-up" data-aos-delay="700"><a id ="classify"class="btn btn-primary btn-xl js-scroll-trigger" data-toggle="modal" data-target="#exampleModalCenter" style="color:white">Absenden</a>
+                    <!--container-fluid end-->
+            </div>
+        </div>
+
+    </div>
+</header>
+
+<!-- Modal -->
+<div class="modal fade "  id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl" style="width:90%" role="document">
+        <div class="modal-content ">
+
+            <div class="modal-body"  style="border: none;">
+
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active " id="home" role="tabpanel" aria-labelledby="home-tab">
+
+                        <div id="loading" class="align-content-center" style="width: 20%;
+    margin: auto;"><img class="align-content-center"  src="{%static 'mainpage/images/loading.gif'%}"></div>
+
+
+                        <div class="contents_boxs">
+                           <h3 class="text-primary"> <i class="fas  fa-book text-primary "></i> Generierter Titel:</h3>
+                            <h5 id="title_gen"></h5>
+                             <h3 class="text-primary"><i class="fas  fa-chart-bar text-primary "></i> Hocheste Wahrscheinlichkeit: </h3>
+                            <h5  id="category"></h5>
+                                                        <hr class="divider" style="max-width: 30rem">
+
+                             <p id="question"></p>
+                            <div id="canvas_holder">
+                            <canvas id="horizontalBar"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            <div class="modal-footer"  style="border: none;">
+                <button type="button" class="btn btn-primary " data-dismiss="modal">Schliessen</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Footer -->
+<footer class="bg-light py-5">
+    <div class="container">
+        <div class="small text-center text-muted">© 2019, Satya Almasian, Stefan Redav and Erik Koynov</div>
+    </div>
+</footer>
+
+<!-- Bootstrap core JavaScript -->
+<script src="{% static 'mainpage/vendor/jquery/jquery.min.js'%}"></script>
+<script src="{% static 'mainpage/vendor/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
+
+<!-- Plugin JavaScript -->
+<script src="{% static 'mainpage/vendor/jquery-easing/jquery.easing.min.js'%}"></script>
+<script src="{% static 'mainpage/vendor/magnific-popup/jquery.magnific-popup.min.js'%}"></script>
+
+<!-- Custom scripts for this template -->
+<script src="{% static 'mainpage/js/creative.min.js'%}"></script>
+<script src="{% static 'mainpage/js/mdb.min.js'%}"></script>
+<script>
+    $('#classify').click(function(){
+        $.ajax({
+            type: "GET",
+            url: "/classify/",
+            data: {'text':$('#input_box').val()},
+            dataType: "json",
+
+            beforeSend: function(){
+                $("#loading").show();
+                $(".contents_boxs").hide()
+            },
+            success: function(response) {
+                console.log(response.classes);
+                $(".contents_boxs").show()
+                $("#loading").hide();
+                $("#category").text(response.class);
+                $("#title_gen").text(response.title);
+
+                // canvas = document.getElementById('horizontalBar');
+                // ctx = canvas.getContext('2d');
+                // ctx.clearRect(0, 0, canvas.width, canvas.height);
+                $("#horizontalBar").remove();
+                $("#canvas_holder").html(" <canvas id=\"horizontalBar\"></canvas>")
+                new Chart(document.getElementById("horizontalBar"), {
+                    "type": "horizontalBar",
+                    "data": {
+                        "labels": ['Arbeitsrecht', 'Erbrecht', 'Familienrecht', 'Kaufrecht', 'Mietrecht', 'Öffentliches Recht', 'Sozialversicherungsrecht', 'Steuerrecht', 'Strafrecht', 'Vertragsrecht'],
+                        "datasets": [{
+                            "label": "Probability",
+                            "data": response.classes,
+                            "fill": false,
+                            "backgroundColor": ["rgba(255, 99, 132, 0.2)", "rgba(255, 159, 64, 0.2)",
+                                "rgba(255, 205, 86, 0.2)", "rgba(75, 192, 192, 0.2)", "rgba(54, 162, 235, 0.2)",
+                                "rgba(153, 102, 255, 0.2)", "rgba(201, 203, 207, 0.2)","rgba(75, 192, 192, 0.2)", "rgba(54, 162, 235, 0.2)",
+                                "rgba(153, 102, 255, 0.2)"
+                            ],
+                            "borderColor": ["rgb(255, 99, 132)", "rgb(255, 159, 64)", "rgb(255, 205, 86)",
+                                "rgb(75, 192, 192)", "rgb(54, 162, 235)", "rgb(153, 102, 255)", "rgb(201, 203, 207)","rgb(75, 192, 192)", "rgb(54, 162, 235)", "rgb(153, 102, 255)"
+                            ],
+                            "borderWidth": 1
+                        }]
+                    },
+                    "options": {
+                        "scales": {
+                            "xAxes": [{
+                                "ticks": {
+                                    "beginAtZero": true
+                                }
+                            }]
+                        }
+                    }
+                });
+
+                color=response.classifier_attn;
+                console.log(color);
+                  $("#question").html(response.question);
+                  counter=0
+                  $("#question label").each(function(i){
+                            $(this).css("background-color","rgb(219,"+color[counter]+", "+color[counter]+")");
+                      counter=counter+1;
+                  });
+
+
+
+
+
+                // var colours = ['red', 'green', 'blue', 'cyan', 'magenta', 'yellow', 'gray'];
+                // var lastC;
+
+                // jQuery('#question').contents().each(function () {
+                //     //not a text node or there is no content to replace
+                //     if ( $(this).is( "input" ) ) {
+                //         val = $(this).val().split(" ");
+                //         $( val ).each(function(i,v ) {
+                //             color = colours[Math.floor(Math.random() * colours.length)];
+                //             $("label").append("<span class='absolute' style='background-color: "+color+"; '>"+v+"</span>");
+                //             $('#search').css('position','relative');
+                //             $(this).val('');
+                //             $('label').css({'position' : 'absolute', 'left' : '2px', 'top' : '2px' });
+                //         });
+                //     }
+                //     else{
+                //         if (this.nodeType != 3 || !this.nodeValue.trim()) {
+                //             return;
+                //         }
+                //
+                //         //replace the value of the text node
+                //         $(this).replaceWith(this.nodeValue.replace(/\w+/g, function (part) {
+                //             var c = colours[Math.floor(Math.random() * colours.length)];
+                //             while (c == lastC) {
+                //                 var c = colours[Math.floor(Math.random() * colours.length)];
+                //             }
+                //             lastC = c;
+                //             return '<span style="background-color: '+c+';">' + part.split("").join("") + '</span>'
+                //         }));
+                //     }
+                // });
+            },
+            error: function(rs, e) {
+                alert(rs.responseText);
+            }
+        });
+    });
+
+
+</script></body>
+
+</html>
